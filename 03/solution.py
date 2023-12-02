@@ -10,4 +10,4 @@ for line in lines:
     # TODO
     sum = sum + 1
 
-print('Part 1: ' + str(sum))
+print('Part 1a: ' + str(sum))
