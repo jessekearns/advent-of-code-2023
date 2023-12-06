@@ -60,8 +60,6 @@ for line in lines:
                     newStart = (prevStart-mapStart) + destination
                     currentValues.append((newStart, prev[1]))
                 else: # Partial overlap
-
-                    # TODO Debug me
                     unmatched1 = [prevStart, 0]
                     matched = [max(prevStart, mapStart), 0]
                     unmatched2 = [min(prevEnd, mapEnd) + 1, 0]
@@ -69,21 +67,6 @@ for line in lines:
                     unmatched1[1] = matched[0] - unmatched1[0]
                     matched[1] = unmatched2[0] - matched[0]                   
                     unmatched2[1] = prevEnd - unmatched2[0] + 1
-
-                    # Solve this without looping
-                    # for i in range(prevStart, prevEnd + 1):
-                    #     if i < mapStart:
-                    #         if unmatched1[0] == -1:
-                    #             unmatched1[0] = i
-                    #         unmatched1[1] = unmatched1[1] + 1
-                    #     elif i > mapEnd:
-                    #         if unmatched2[0] == -1:
-                    #             unmatched2[0] = i
-                    #         unmatched2[1] = unmatched2[1] + 1
-                    #     else:
-                    #         if matched[0] == -1:
-                    #             matched[0] = i
-                    #         matched[1] = matched[1] + 1
 
                     currentValues.append((matched[0] - (mapStart-destination), matched[1]))
                     if (unmatched1[1] != 0):

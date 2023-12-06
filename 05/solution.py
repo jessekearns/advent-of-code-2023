@@ -8,7 +8,8 @@ with open(inputfile) as f:
 previousValues = []
 currentValues = []
 currentMapping = "seeds"
-seedsAreRanges = True # Toggle for part 1 vs part 2
+seedsAreRanges = False # Toggle for part 1 vs part 2
+# Part 2 is too slow with this approach
 
 for line in lines:
     # Skip empty line
