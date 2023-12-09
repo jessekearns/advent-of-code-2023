@@ -4,10 +4,31 @@ inputfile = Path(__file__).parent / "input.txt"
 with open(inputfile) as f:
     lines = f.readlines()
 
-sum = 0
+# steps = "LLR"
+steps = "LRLRRRLRLLRRLRLRRRLRLRRLRRLLRLRRLRRLRRRLRRRLRLRRRLRLRRLRRLLRLRLLLLLRLRLRRLLRRRLLLRLLLRRLLLLLRLLLRLRRLRRLRRRLRRRLRRLRRLRRRLRLRLRRLRLRLRLRRLRRRLLRLLRRLRLRRRLRLRRRLRLRRRLRRRLRRLRLLLLRLRRRLRLRRLRLRRLRRLRRLLRRRLLLLLLRLRRRLRRLLRRRLRRLLLRLRLRLRRRLRRLRLRRRLRRLRRRLLRRLRRLLLRRRR"
 
+nodes = dict()
 for line in lines:
-    # TODO
-    sum = sum + 1
+    segments = line.split('=')
+    key = segments[0].strip()
+    pair = segments[1].replace('(', '').replace(')', '').split(',')
+    left = pair[0].strip()
+    right = pair[1].strip()
 
-print('Part 1: ' + str(sum))
+    nodes[key] = (left, right)
+
+currentNode = "AAA"
+currentStep = 0
+while currentNode != "ZZZ":
+    direction = steps[currentStep % len(steps)]
+    if (direction == 'L'):
+        currentNode = nodes[currentNode][0]
+    else:
+        currentNode = nodes[currentNode][1]
+
+    currentStep = currentStep + 1
+    # print (currentNode)
+    if (currentStep % len(steps) == 0):
+        print("Returning to top of input")
+
+print('Steps: ' + str(currentStep))
